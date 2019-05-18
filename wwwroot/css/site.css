@@ -1,0 +1,93 @@
+﻿
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div {
+  border-radius: 1em;
+  padding: 1em;
+}
+
+ul {
+  list-style: none;
+}
+
+.item-header {
+  grid-area: header;
+  background-color: #404f77;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.item-main {
+  grid-area: main;
+  background-color: #bdbfd6;
+  border-radius: 1em;
+}
+
+.item-sidebar {
+  grid-area: sidebar;
+  background-color: #3c6acd;
+  color: #FFFFFF;
+}
+
+.item-footer {
+  grid-area: footer;
+  background-color: #9fa7c1;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+      "header header header header"
+      /* "main main . sidebar" */
+      "sidebar main main main"
+      "footer footer footer footer"; 
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.5em;
+  /* justify-items: center; */
+  /* justify-content: center; */
+
+}
+
+.item-header h1 {
+  color: #F5F5F5;
+  text-decoration: none;
+}
+
+.item-sidebar  a {
+  color: #FFF;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+/* Button styling */
+
+.button {
+  background-color: #3c6acd;
+  color: #FFF;
+  padding: 1em 1em;
+  border: none;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

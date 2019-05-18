@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Promise";
+}
+
+<!-- <div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div> -->
+<p>A promising exmaple.</p>
+<div>
+    <input id="PromiseExampleButton" type="button" class="button" value="Run Promise Example" />
+</div>
+<div>
+    <div id ="ResultArea"></div>
+</div>
+
+<script>
+    $(document).ready(() =>
+    {
+        $('#PromiseExampleButton').on('click', () => {
+            DisableButton();
+            var promise = $.getJSON('/Home/LongRunningTask');
+            var requestTime = new Date().getTime();
+            
+            promise.done(data => {
+                requestTime = new Date().getTime() - requestTime;
+                if (data.success === true) {
+                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned success.`);
+                }
+                else {
+                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned failure.`);
+                }
+                EnableButton();
+            });
+            
+            promise.fail(data => {
+                requestTime = new Date().getTime() - requestTime;
+                $('#ResultArea').html(`The request took ${requestTime}ms. The promise was rejected! The call threw an exception.`);
+                EnableButton();
+            });
+         });
+    });
+
+    function DisableButton() {
+        $('#PromiseExampleButton').val('Awating results...');
+        $('#PromiseExampleButton').addClass("disabled");
+    }
+
+    function EnableButton () {
+        $('#PromiseExampleButton').val('Run Promise Example');
+        $('#PromiseExampleButton').removeClass("disabled");
+    }
+</script>
