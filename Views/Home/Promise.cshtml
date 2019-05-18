@@ -38,7 +38,7 @@
 
                     promise2.fail(() => {
                         requestTime = new Date().getTime() - requestTime;
-                        $('#ResultArea').html(`The second request took ${requestTime}ms. The promise was rejected! The call threw an exception.`);
+                        $('#ResultArea').html($('#ResultArea').html() + `The second request took ${requestTime}ms. The promise was rejected! The call threw an exception.`);
                         EnableButton();
                     });
                 }
