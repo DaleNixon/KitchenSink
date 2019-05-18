@@ -54,7 +54,7 @@ ul {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 20em 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
       "header header header header"
@@ -79,6 +79,19 @@ ul {
   text-decoration: none;
 }
 /* End setup for CSS grid layout */
+
+.dropshadow {
+  /* https://www.cssmatic.com/box-shadow */
+  box-shadow: 3px 5px 14px -8px rgba(0,0,0,0.75);
+}
+
+.textshadow {
+  text-shadow: 2px 2px rgb(44, 23, 102);
+}
+
+.leftpadding {
+  padding-left: 1em;
+}
 
 /* Button styling */
 

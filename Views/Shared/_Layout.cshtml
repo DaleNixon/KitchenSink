@@ -24,17 +24,18 @@
 <body>
     <div class="text-center">
         <div class="container">
-            <div class="item-header"><h1>Kitchen Sink - @ViewData["Title"]</h1></div>
-            <div class="item-main">
+            <div class="item-header dropshadow"><h1 class="textshadow">Kitchen Sink - @ViewData["Title"]</h1></div>
+            <div class="item-main dropshadow">
                 @RenderBody()
             </div>
-            <div class="item-sidebar">
+            <div class="item-sidebar dropshadow">
+                <h2 class="textshadow leftpadding">Navigation</h2>
                 <ul>
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-controller="Home" asp-action="Promise">Promise</a></li>
                 </ul>
             </div>
-            <div class="item-footer"></div>
+            <div class="item-footer dropshadow"></div>
         </div>
     </div>
 </body>
