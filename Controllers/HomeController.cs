@@ -20,7 +20,7 @@ namespace KitchenSink.Controllers
             return View();
         }
 
-        public ActionResult LongRunningTask()
+        public JsonResult LongRunningTask()
         {
             var time = (new Random().Next(5, 20)) * 100;
 
@@ -33,7 +33,12 @@ namespace KitchenSink.Controllers
             }
 
             // 50% chance of returning true for success
-            return Json(new { Success = (time % 2000 == 0) });
+            return Json(new { Success = (time % 200 == 0) });
+        }
+
+        public JsonResult SecondLongRunningTask()
+        {
+            return LongRunningTask();
         }
     }
 }

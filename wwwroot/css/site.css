@@ -26,6 +26,7 @@ ul {
   list-style: none;
 }
 
+/* Setup for CSS grid layout */
 .item-header {
   grid-area: header;
   background-color: #404f77;
@@ -77,6 +78,7 @@ ul {
   font-size: 1.2em;
   text-decoration: none;
 }
+/* End setup for CSS grid layout */
 
 /* Button styling */
 

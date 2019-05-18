@@ -24,17 +24,36 @@
             promise.done(data => {
                 requestTime = new Date().getTime() - requestTime;
                 if (data.success === true) {
-                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned success.`);
+                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned success. Calling second long running task...`);
+                    requestTime = new Date().getTime();
+                    var promise2 = $.getJSON('/Home/SecondLongRunningTask');
+
+                    promise2.done(data2 => {
+                        requestTime = new Date().getTime() - requestTime;
+                        if (data2.success === true) {
+                            $('#ResultArea').html($('#ResultArea').html() + `<br /><br />The second request took ${requestTime}ms. The promise was fulfilled! The data returned success.`);
+                        }
+                        else {
+                            $('#ResultArea').html($('#ResultArea').html() + `<br /><br />The second request took ${requestTime}ms. The promise was fulfilled! The data returned failure.`);
+                        }
+                        EnableButton();
+                    });
+
+                    promise2.fail(() => {
+                        requestTime = new Date().getTime() - requestTime;
+                        $('#ResultArea').html(`The second request took ${requestTime}ms. The promise was rejected! The call threw an exception.`);
+                        EnableButton();
+                    });
                 }
                 else {
-                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned failure.`);
+                    $('#ResultArea').html(`The request took ${requestTime}ms. The promise was fulfilled! The data returned failure. The second long running task will not be called.`);
+                    EnableButton();
                 }
-                EnableButton();
             });
             
-            promise.fail(data => {
+            promise.fail(() => {
                 requestTime = new Date().getTime() - requestTime;
-                $('#ResultArea').html(`The request took ${requestTime}ms. The promise was rejected! The call threw an exception.`);
+                $('#ResultArea').html(`The request took ${requestTime}ms. The promise was rejected! The call threw an exception. The second long running task will not be called.`);
                 EnableButton();
             });
          });
