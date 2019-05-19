@@ -4,17 +4,20 @@
 
 <p>A promising example.</p>
 <div>
-    <input id="PromiseExampleButton" type="button" class="button" value="Run Promise Example" />
+    <input id="PromiseExampleButton" type="button" class="button" value="Run Promise Example" /> <span id="ProgressArea"></span>
 </div>
 <div>
     <div id ="ResultArea"></div>
 </div>
+
+<script src="~/js/progress.js"></script>
 
 <script>
     $(document).ready(() =>
     {
         $('#PromiseExampleButton').on('click', () => {
             DisableButton();
+            $('#ResultArea').html('');
             var promise = $.getJSON('/Home/LongRunningTask');
             var requestTime = new Date().getTime();
             
@@ -57,11 +60,13 @@
     });
 
     function DisableButton() {
+        progress.showProgress('ProgressArea');
         $('#PromiseExampleButton').val('Awating results...');
         $('#PromiseExampleButton').addClass("disabled");
     }
 
     function EnableButton () {
+        progress.stopProgress('ProgressArea');
         $('#PromiseExampleButton').val('Run Promise Example');
         $('#PromiseExampleButton').removeClass("disabled");
     }
